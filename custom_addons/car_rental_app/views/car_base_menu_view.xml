@@ -1,0 +1,4 @@
+<odoo>
+
+    <menuitem id="rental_car_root_menu" name="Car rental"/>
+</odoo>

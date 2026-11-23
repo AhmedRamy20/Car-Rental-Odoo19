@@ -29,3 +29,12 @@ sessions/
 # OS files
 .DS_Store
 Thumbs.db
+
+# Local Odoo configuration
+config/odoo.conf
+
+# Runtime logs
+logs/
+
+# Local Odoo data
+.odoo-data/

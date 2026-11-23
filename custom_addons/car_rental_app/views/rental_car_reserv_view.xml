@@ -1,0 +1,49 @@
+<odoo>
+
+
+    <record id="rental_car_reserv_list_view" model="ir.ui.view">
+        <field name="name">rental car reserv list view</field>
+        <field name="model">car.rental.reservation</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="ref" />
+                <field name="car_id" />
+                <field name="user_id" />
+                <field name="reservation_date" />
+                <field name="return_request_date" />
+                <field name="return_approve_date" />
+                <field name="reservation_state" />
+            </list>
+        </field>
+    </record>
+
+
+    <record id="rental_car_reserv_form_view" model="ir.ui.view">
+        <field name="name">rental car reserv form view</field>
+        <field name="model">car.rental.reservation</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="ref" />
+                        <field name="car_id" />
+                        <field name="user_id" />
+                        <field name="reservation_date" />
+                        <field name="return_request_date" />
+                        <field name="return_approve_date" />
+                        <field name="reservation_state" />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="rental_car_reserv_action" model="ir.actions.act_window">
+        <field name="name">Reservation list</field>
+        <field name="res_model">car.rental.reservation</field>
+    </record>
+
+    <menuitem id="cars_list_reserv_menu" parent="rental_car_root_menu" name="Reservations"
+        action="rental_car_reserv_action" />
+</odoo>
