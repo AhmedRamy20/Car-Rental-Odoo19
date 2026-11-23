@@ -1,0 +1,31 @@
+
+# Odoo source code (external dependency)
+odoo19/
+
+# Python environments
+.venv/
+venv/
+env/
+
+# Python generated files
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Odoo runtime files
+*.log
+*.pid
+filestore/
+sessions/
+
+# Local configuration and secrets
+.env
+.env.*
+*.local.conf
+
+# IDE files
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
