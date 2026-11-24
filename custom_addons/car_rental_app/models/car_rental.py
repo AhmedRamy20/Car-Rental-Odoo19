@@ -19,6 +19,7 @@ class CarRental(models.Model):
     car_state = fields.Selection([
         ("available","Available"),
         ("rented","Rented"),
+        ("un-available","Un Available"),
         ("damaged","Damaged"),
     ],string="Status", default='available', required=True)
     
@@ -37,4 +38,8 @@ class CarRental(models.Model):
                 "car_id": rec.id
             })
             # change the car state to rented
-            rec.car_state = "rented"
+            # rec.car_state = "rented"
+            # bit we want to sort of bybass the write permission for the users (cause i did make users permissions so they can not write or do anything other tan read)
+            rec.sudo().write({
+                "car_state": "rented",
+            })

@@ -1,3 +1,5 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_car_rental_car,access_car_rental_car,model_car_rental_car,,1,1,1,1
-access_car_rental_reservation,access_car_rental_reservation,model_car_rental_reservation,,1,1,1,1
+access_car_rental_car_manager,access.car.rental.car.manager,model_car_rental_car,car_rental_app.car_rental_manager_group,1,1,1,1
+access_car_rental_reservation_manager,access.car.rental.reservation.manager,model_car_rental_reservation,car_rental_app.car_rental_manager_group,1,1,1,1
+access_car_rental_car_user,access.car.rental.car.user,model_car_rental_car,car_rental_app.car_rental_user_group,1,0,0,0
+access_car_rental_reservation_user,access.car.rental.reservation.user,model_car_rental_reservation,car_rental_app.car_rental_user_group,1,1,1,0

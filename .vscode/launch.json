@@ -1,0 +1,28 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Car Rental Application",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "F:\\Algorithm\\snap\\odoo_learning\\Car_Rental_App\\odoo19\\odoo-bin",
+            "python": "F:\\Algorithm\\snap\\odoo_learning\\Car_Rental_App\\odoo19\\.env-car-rental\\Scripts\\python.exe",
+            "cwd": "F:\\Algorithm\\snap\\odoo_learning\\Car_Rental_App\\odoo19",
+            "args": [
+                "-c",
+                "F:\\Algorithm\\snap\\odoo_learning\\Car_Rental_App\\config\\odoo.conf",
+                "-d",
+                "car_rental_dev",
+                "-u",
+                "car_rental_app",
+                "--dev=assets"
+            ],
+            "gevent": false,
+            "console": "integratedTerminal",
+            "justMyCode": false,
+            "env": {
+                "PYTHONPATH": "F:\\Algorithm\\snap\\odoo_learning\\Car_Rental_App\\odoo19"
+            }
+        }
+    ]
+}
