@@ -10,7 +10,7 @@ class CarRentalReservation(models.Model):
         string="Reservation Reference",
         required=True,
         default="New",
-        readonly=1,
+        readonly=True,
         copy=False
     )
 
@@ -50,6 +50,9 @@ class CarRentalReservation(models.Model):
         ("returned", "Returned"),
         ("cancelled", "Cancelled"),
     ], string="Reservation Status", default="active", required=True)
+
+
+
 
 
     @api.model_create_multi

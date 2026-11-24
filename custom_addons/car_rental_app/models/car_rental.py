@@ -33,7 +33,7 @@ class CarRental(models.Model):
             if rec.car_state != "available":
                 raise UserError("This car is not available for reservation.")
             # create a reservation
-            rec.env["car.rental.reservation"].create({
+            self.env["car.rental.reservation"].create({
                 "car_id": rec.id
             })
             # change the car state to rented

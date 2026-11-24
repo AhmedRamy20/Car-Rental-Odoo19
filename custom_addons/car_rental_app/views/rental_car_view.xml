@@ -8,10 +8,10 @@
             <list>
                 <field name="name" />
                 <field name="car_model" />
-                <field name="car_state" />
                 <field name="car_brand" />
-                <field name="license_plate" />
+                <field name="car_state" />
                 <field name="manufacturing_year" />
+                <field name="license_plate" />
             </list>
         </field>
     </record>
@@ -22,15 +22,27 @@
         <field name="model">car.rental.car</field>
         <field name="arch" type="xml">
             <form>
+                <header>
+                    <button name="action_reserve" string="Reserve this car" type="object"
+                        class="btn-primary" invisible="car_state != 'available'" />
+
+                    <field name="car_state" widget="statusbar" />
+                </header>
                 <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" placeholder="Ex: Toyota" />
+                        </h1>
+                    </div>
                     <group>
-                        <field name="name" />
-                        <field name="car_model" />
-                        <field name="car_state" />
-                        <field name="car_brand" />
-                        <field name="license_plate" />
-                        <field name="manufacturing_year" />
-                        <field name="reservation_ids" />
+                        <group>
+                            <field name="car_model" />
+                            <field name="car_brand" />
+                        </group>
+                        <group>
+                            <field name="license_plate" />
+                            <field name="manufacturing_year" />
+                        </group>
                     </group>
                 </sheet>
             </form>

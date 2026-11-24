@@ -2,7 +2,7 @@
     "name": "Car Rental",
     "author": "Ahmed ramy",
     "license": "LGPL-3",
-    "depends": ["base"],
+    "depends": [],
     "data": [
         "security/ir.model.access.csv",
         "views/car_base_menu_view.xml",
