@@ -23,15 +23,35 @@
         <field name="model">car.rental.reservation</field>
         <field name="arch" type="xml">
             <form>
+                <header>
+                    <button name="car_request_return" string="Request Return" type="object"
+                        class="btn-primary" invisible="reservation_state != 'active'" />
+
+                    <button name="car_approve_return" string="Approve Return" type="object"
+                        groups="car_rental_app.car_rental_manager_group"
+                        class="btn-primary" invisible="reservation_state != 'return_requested'" />
+
+                    <field name="reservation_state" widget="statusbar" />
+                </header>
                 <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="car_id" />
+                        </h1>
+                    </div>
                     <group>
-                        <field name="ref" />
-                        <field name="car_id" />
-                        <field name="user_id" />
-                        <field name="reservation_date" />
-                        <field name="return_request_date" />
-                        <field name="return_approve_date" />
-                        <field name="reservation_state" />
+                        <group string="Main information">
+                            <field name="ref" />
+                            <field name="user_id" />
+                            <field name="reservation_date" />
+                        </group>
+
+                        <group string="Additional information">
+                            <field name="return_request_date" />
+                            <field name="return_approve_date" />
+                            <field name="reservation_state" />
+                        </group>
+
                     </group>
                 </sheet>
             </form>

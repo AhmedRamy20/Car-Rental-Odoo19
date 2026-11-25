@@ -19,15 +19,19 @@ class CarRental(models.Model):
     car_state = fields.Selection([
         ("available","Available"),
         ("rented","Rented"),
-        ("un-available","Un Available"),
         ("damaged","Damaged"),
     ],string="Status", default='available', required=True)
     
    
     reservation_ids = fields.One2many("car.rental.reservation","car_id")
     
+    is_manager = fields.Boolean(compute="_compute_is_a_manager")
     
-    
+    # here we want to know if the currnet user is a manager of not so that we can make the reserve car button invisible from the manager cause we did make in security that manager inherits the user group also
+    def _compute_is_a_manager(self):
+        manager = self.env.user.has_group("car_rental_app.car_rental_manager_group")
+        for rec in self:
+            rec.is_manager = manager
     
     def action_reserve(self):
         for rec in self:

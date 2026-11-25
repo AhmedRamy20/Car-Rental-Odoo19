@@ -1,5 +1,5 @@
 from odoo import fields, models,api
-
+from odoo.exceptions import UserError
 
 class CarRentalReservation(models.Model):
     _name = "car.rental.reservation"
@@ -25,6 +25,7 @@ class CarRentalReservation(models.Model):
         "res.users",
         string="Reserved By",
         required=True,
+        readonly=True,
         default=lambda self: self.env.user,
     )
 
@@ -64,3 +65,29 @@ class CarRentalReservation(models.Model):
                 ) or "New"
 
         return super().create(vals_list)
+    
+    
+    
+    def car_request_return(self):
+        for reserv in self: 
+            # prevent cst to ask request return twice
+            if reserv.reservation_state != "active":
+                raise UserError("Only active reservations can request a return.")
+            
+            reserv.return_request_date = fields.Datetime.now()
+            reserv.reservation_state = "return_requested"
+            
+            
+            
+    def car_approve_return(self):
+        for reserv in self:
+            if reserv.reservation_state != "return_requested":
+                raise UserError("You must make a return request first.... ")
+            
+            # we did hide this button (approve requeset button) by specifying the group (manager group only) BUT we did this check also cause their is a possibility of calling this method from any other interface
+            if not self.env.user.has_group("car_rental_app.car_rental_manager_group"):
+                raise UserError("Only managers can approve returns.")
+            
+            reserv.return_approve_date = fields.Datetime.now()
+            reserv.reservation_state = "returned"
+            reserv.car_id.car_state = "available"
