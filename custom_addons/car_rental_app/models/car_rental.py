@@ -86,7 +86,7 @@ class CarRental(models.Model):
                 raise UserError("Only damaged cars can be restored.")
             
             rec.car_state = "available"
-    
+            
     
     # this action to view the list of reservation for this specific car 
     def action_view_reservations(self):
@@ -108,3 +108,32 @@ class CarRental(models.Model):
     def _compute_reservation_count(self):
         for rec in self:
             rec.count = len(rec.reservation_ids)
+    
+    # this method for the manager to reserve a car for a specific user or CST
+    def action_reserv_for_cst(self):
+        for rec in self:
+            if not rec.env.user.has_group("car_rental_app.car_rental_manager_group"):
+                raise UserError("Only Managers can Reserve this car to a specific user")
+            
+    
+    
+    
+    def action_open_reservation_wizard(self):
+        self.ensure_one()
+
+        if not self.env.user.has_group("car_rental_app.car_rental_manager_group"):
+            raise UserError("Only managers can reserve for customers.")
+
+        if self.car_state != "available":
+            raise UserError("This car is not available.")
+
+        return {
+            "type": "ir.actions.act_window",
+            "name": "Reserve for Customer",
+            "res_model": "car.rental.wizard",
+            "view_mode": "form",
+            "target": "new",
+            "context": {
+                "default_car_id": self.id,
+            },
+        }

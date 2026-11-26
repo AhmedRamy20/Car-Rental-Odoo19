@@ -9,6 +9,7 @@
         "views/car_base_menu_view.xml",
         "views/rental_car_view.xml",
         "views/rental_car_reserv_view.xml",
+        "views/rental_car_wizard_view.xml",
         "data/sequence_data.xml"
     ],
     "application": True

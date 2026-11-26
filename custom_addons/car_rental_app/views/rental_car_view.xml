@@ -30,6 +30,12 @@
                     </button>
                 </div>
                 <header>
+                    <button name="action_open_reservation_wizard"
+                        string="Reserve for Customer"
+                        type="object"
+                        class="btn-primary"
+                        groups="car_rental_app.car_rental_manager_group"
+                        invisible="car_state != 'available'" />
                     <button name="action_reserve" string="Reserve this car" type="object"
                         class="btn-primary" invisible="car_state != 'available' or is_manager " />
 

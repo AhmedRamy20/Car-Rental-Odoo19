@@ -3,3 +3,4 @@ access_car_rental_car_manager,access.car.rental.car.manager,model_car_rental_car
 access_car_rental_reservation_manager,access.car.rental.reservation.manager,model_car_rental_reservation,car_rental_app.car_rental_manager_group,1,1,1,1
 access_car_rental_car_user,access.car.rental.car.user,model_car_rental_car,car_rental_app.car_rental_user_group,1,0,0,0
 access_car_rental_reservation_user,access.car.rental.reservation.user,model_car_rental_reservation,car_rental_app.car_rental_user_group,1,1,1,0
+access_car_rental_wizard_manager,access.car.rental.wizard.manager,model_car_rental_wizard,car_rental_app.car_rental_manager_group,1,1,1,1

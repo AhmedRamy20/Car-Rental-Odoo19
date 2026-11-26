@@ -1,0 +1,26 @@
+<odoo>
+    <record id="car_rental_wizard_form" model="ir.ui.view">
+        <field name="name">car rental wizard form</field>
+        <field name="model">car.rental.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Reserve for Customer">
+                <group>
+                    <field name="car_id" />
+                    <field name="user_id"
+                        domain="[('share', '=', False)]" />
+                </group>
+
+                <footer>
+                    <button name="action_confirm_reservation"
+                        string="Confirm Reservation"
+                        type="object"
+                        class="btn-primary" />
+
+                    <button string="Cancel"
+                        special="cancel"
+                        class="btn-secondary" />
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>
