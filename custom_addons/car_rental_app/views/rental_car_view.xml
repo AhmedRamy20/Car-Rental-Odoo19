@@ -22,6 +22,13 @@
         <field name="model">car.rental.car</field>
         <field name="arch" type="xml">
             <form>
+
+                <div class="oe_button_box" name="button_box">
+                    <button name="action_view_reservations" class="oe_stat_button" type="object"
+                        icon="fa-car" groups="car_rental_app.car_rental_manager_group">
+                        <field name="count" widget="statinfo" string="reservatins" />
+                    </button>
+                </div>
                 <header>
                     <button name="action_reserve" string="Reserve this car" type="object"
                         class="btn-primary" invisible="car_state != 'available' or is_manager " />
@@ -32,7 +39,6 @@
                     <button name="action_restore_available" string="Restore to available"
                         type="object"
                         class="btn-primary" invisible="car_state != 'damaged' or not is_manager" />
-
                     <field name="car_state" widget="statusbar" />
                 </header>
                 <sheet>

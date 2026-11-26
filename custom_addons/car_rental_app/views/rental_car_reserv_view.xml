@@ -25,7 +25,7 @@
             <form>
                 <header>
                     <button name="car_request_return" string="Request Return" type="object"
-                        class="btn-primary" invisible="reservation_state != 'active'" />
+                        class="btn-primary" invisible="reservation_state != 'active' or is_manager" />
 
                     <button name="car_approve_return" string="Approve Return" type="object"
                         groups="car_rental_app.car_rental_manager_group"

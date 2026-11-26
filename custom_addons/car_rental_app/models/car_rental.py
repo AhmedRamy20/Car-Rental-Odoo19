@@ -86,3 +86,25 @@ class CarRental(models.Model):
                 raise UserError("Only damaged cars can be restored.")
             
             rec.car_state = "available"
+    
+    
+    # this action to view the list of reservation for this specific car 
+    def action_view_reservations(self):
+        self.ensure_one()
+        if not self.env.user.has_group("car_rental_app.car_rental_manager_group"):
+            raise UserError("Only managers can view car reservation history.")
+        return {
+            "type": "ir.actions.act_window",
+            "name": "Reservations",
+            "res_model": "car.rental.reservation",
+            "view_mode": "list,form",
+            "domain": [("car_id", "=", self.id)],
+            "context": {"default_car_id": self.id},
+        }
+
+    count = fields.Integer(compute="_compute_reservation_count")
+    
+    @api.depends("reservation_ids")
+    def _compute_reservation_count(self):
+        for rec in self:
+            rec.count = len(rec.reservation_ids)

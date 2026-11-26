@@ -52,6 +52,15 @@ class CarRentalReservation(models.Model):
         ("cancelled", "Cancelled"),
     ], string="Reservation Status", default="active", required=True)
 
+    
+    
+    is_manager = fields.Boolean(compute="_compute_is_a_manager")
+    
+    @api.depends_context("uid")
+    def _compute_is_a_manager(self):
+        manager = self.env.user.has_group("car_rental_app.car_rental_manager_group")
+        for rec in self:
+            rec.is_manager = manager
 
 
 
@@ -70,6 +79,10 @@ class CarRentalReservation(models.Model):
     
     def car_request_return(self):
         for reserv in self: 
+            
+            #?? notice that the manager can see all the users can cause we did say in the security file that managers implies what is in user group but we did manage this using computed field in xml
+            if reserv.env.user.has_group("car_rental_app.car_rental_manager_group"):
+                raise UserError("Managers cannot request a return. Only users can.")
             # prevent cst to ask request return twice
             if reserv.reservation_state != "active":
                 raise UserError("Only active reservations can request a return.")
